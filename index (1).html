@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TF07 Arena Premium</title>
+<style>
+:root{--bg:#f4f1ec;--card:#fff;--card2:#efe9e1;--tx:#1b1712;--mut:#7a6f62;--ac:#ff6a00;--ac2:#ffb300;--ok:#17a34a;--bad:#dc2626;--bd:#e3dacd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b10;--card:#15151d;--card2:#1d1d28;--tx:#f4f1ea;--mut:#9a95a6;--bd:#2a2a38}}
+:root[data-theme="dark"]{--bg:#0b0b10;--card:#15151d;--card2:#1d1d28;--tx:#f4f1ea;--mut:#9a95a6;--bd:#2a2a38}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:520px;margin:0 auto;padding:14px 14px 96px}
+h1,h2,h3{margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.logo{font-weight:900;font-size:20px;letter-spacing:1px}.logo b{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill{font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;background:var(--card2);color:var(--mut);border:1px solid var(--bd)}
+.hero{border-radius:20px;padding:20px;background:linear-gradient(135deg,#ff6a00,#c2260c 60%,#4a0d3d);color:#fff;position:relative;overflow:hidden}
+.hero small{opacity:.85;font-weight:700;letter-spacing:1px}
+.hero h2{font-size:24px;margin:6px 0 4px}
+.cd{display:flex;gap:8px;margin:14px 0}
+.cd div{flex:1;background:rgba(0,0,0,.3);border-radius:12px;text-align:center;padding:8px 0;font-size:11px}
+.cd b{display:block;font-size:22px}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--ac),#e8420c);width:100%}
+.btn.alt{background:var(--card2);color:var(--tx);border:1px solid var(--bd)}
+.btn.sm{width:auto;padding:8px 12px;font-size:12px}
+.btn:disabled{opacity:.5}
+.hero .btn{background:#fff;color:#c2260c}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:20px;display:block;color:var(--ac)}.stat span{font-size:11px;color:var(--mut)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}
+.sec h3{font-size:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.b{font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--card2);color:var(--mut)}
+.b.live{background:#dc262622;color:var(--bad)}.b.open{background:#17a34a22;color:var(--ok)}.b.done{background:var(--card2)}
+.prize{font-size:22px;font-weight:900;color:var(--ac2)}
+.bar{height:6px;border-radius:9px;background:var(--card2);overflow:hidden;margin:8px 0 4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+.mut{color:var(--mut);font-size:12px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}
+.tabs button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--mut);padding:8px 14px;border-radius:99px;font-weight:700;font-size:13px}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+input,select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--card2);color:var(--tx);font-size:15px;margin:5px 0 10px}
+label{font-size:12px;font-weight:700;color:var(--mut)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}.tbl td,.tbl th{padding:10px 6px;text-align:left;border-bottom:1px solid var(--bd)}.tbl th{color:var(--mut);font-size:11px}
+.rk{font-weight:900;width:30px}.r1{color:#ffb300}.r2{color:#b0b7c3}.r3{color:#cd7f32}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);display:flex;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--mut);font-size:11px;font-weight:700;padding:6px 0}
+nav button span{display:block;font-size:20px}nav button.on{color:var(--ac)}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;z-index:9}
+.sheet.show{display:flex}.sheet>div{background:var(--card);width:100%;max-width:520px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 18px calc(20px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto}
+#toast{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:13px;z-index:20;display:none}
+.room{background:var(--card2);border-radius:12px;padding:12px;margin-top:10px;font-family:ui-monospace,monospace;font-size:14px}
+:root{--bg:#07070c;--card:#12121a;--card2:#1b1b27;--tx:#f6f2ea;--mut:#9690a6;--bd:#2a2a3a;--ac:#ff6a00;--ac2:#ffc400}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(600px 300px at 80% -5%,#ff6a0030,transparent),radial-gradient(500px 300px at -10% 100%,#7c1d6f30,transparent);pointer-events:none;z-index:0}
+main{position:relative;z-index:1}
+.card{background:linear-gradient(160deg,#1a1a26,#10101a);border:1px solid #2d2d40;border-left:3px solid var(--ac);box-shadow:0 8px 24px #0008;animation:fadeup .5s both}
+.stat{background:linear-gradient(160deg,#1a1a26,#10101a);border-color:#2d2d40}
+.stat b{background:linear-gradient(180deg,#fff0a8,#ff8a00);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{background:linear-gradient(135deg,#ff6a00,#b3200a 55%,#2a0a3a);border:1px solid #ffb30066;box-shadow:0 0 40px #ff6a0040,inset 0 0 40px #0004}
+.hero h2{font-style:italic;text-transform:uppercase;letter-spacing:1px}
+.hero::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff40,transparent);transform:skewX(-20deg);animation:sweep 4s infinite;pointer-events:none}
+.btn{background:linear-gradient(90deg,#ff6a00,#ff9d00);color:#1b0a00;box-shadow:0 6px 18px #ff6a0055;text-transform:uppercase;letter-spacing:1px}
+.prize{background:linear-gradient(180deg,#fff0a8,#ffb300);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{background:#0c0c14dd;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid #ffb30033}
+nav button.on{color:var(--ac2);text-shadow:0 0 12px #ff6a00}
+.tabs button.on{background:linear-gradient(90deg,#ff6a00,#ffb300);color:#1b0a00;box-shadow:0 0 14px #ff6a0066}
+.b.live{animation:blink 1.2s infinite}
+.tbl tr:nth-child(2) td{background:#ffb30014}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes sweep{0%{left:-60%}60%,100%{left:130%}}
+@keyframes blink{50%{opacity:.4}}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fill{to{width:100%}}
+@keyframes pulse{50%{transform:scale(1.06)}}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-100vh) translateX(30px);opacity:0}}
+#splash{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 40%,#3a1204 0,#0a0508 60%,#050507 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;transition:opacity .7s,transform .7s}
+#splash.out{opacity:0;transform:scale(1.15);pointer-events:none}
+.emb{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.emb i{position:absolute;bottom:-10px;width:4px;height:4px;border-radius:50%;background:#ff9a2e;box-shadow:0 0 8px #ff6a00;animation:rise linear infinite;opacity:0}
+.ring{position:relative;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;animation:pop 1s cubic-bezier(.2,1.4,.4,1) both}
+.ring::before{content:"";position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,#ff6a00,#ffd000,transparent 40%,#ff6a00);animation:spin 3s linear infinite}
+.ring::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#0c0709}
+.ring span{position:relative;z-index:1;font-size:40px;font-weight:900;font-style:italic;background:linear-gradient(180deg,#fff2b0,#ff8a00);-webkit-background-clip:text;background-clip:text;color:transparent}
+#splash h1{font-size:34px;letter-spacing:10px;margin-top:28px;font-weight:900;padding-left:10px;animation:fadeup .9s .5s both}
+#splash p{letter-spacing:4px;font-size:11px;color:#ffb36b;margin:6px 0 0;animation:fadeup .9s .8s both}
+.load{width:180px;height:3px;background:#ffffff22;border-radius:9px;margin-top:34px;overflow:hidden;transition:opacity .4s}
+.load i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6a00,#ffd000);animation:fill 2.1s .2s ease-out forwards}
+#splash .enter{position:absolute;bottom:calc(14% + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;border:1px solid #ffb300;background:linear-gradient(90deg,#ff6a00,#ffb300);color:#1b0a00;font-weight:900;letter-spacing:3px;padding:14px 34px;border-radius:99px;font-size:14px;box-shadow:0 0 30px #ff6a0088;transition:opacity .5s}
+#splash.ready .enter{opacity:1;pointer-events:auto;animation:pulse 1.4s infinite}
+#splash.ready .load{opacity:0}
+.ban{margin:-14px -14px 12px;height:112px;border-radius:15px 15px 0 0;overflow:hidden}.ban svg,.ban img{width:100%;height:100%;object-fit:cover;display:block}
+.av{width:46px;height:46px;border-radius:50%;border:2px solid var(--bd);background:var(--card2);display:grid;place-items:center;font-size:24px;overflow:hidden;padding:0;color:var(--tx);flex:none}
+.av img{width:100%;height:100%;object-fit:cover}.av span{line-height:1}.av.on{border-color:var(--ac2);box-shadow:0 0 14px #ff6a0099}
+.av.big{width:84px;height:84px;font-size:42px;border:3px solid var(--ac2);box-shadow:0 0 22px #ff6a0077}
+.avg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.pf{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.avm{display:flex;gap:8px;align-items:center;background:none;border:0;padding:0}.avm .av{width:38px;height:38px;font-size:20px}
+.room b{color:var(--ac2)}
+</style>
+</head>
+<body>
+<div id="splash" onclick="enter()"><div class="emb" id="emb"></div><div class="ring"><span>TF07</span></div><h1>ARENA</h1><p>FREE FIRE TOURNAMENTS</p><div class="load"><i></i></div><button class="enter" onclick="enter()">TAP TO ENTER</button></div>
+<main id="app"></main>
+<nav id="nav"></nav>
+<div class="sheet" id="sheet"><div id="sheetBody"></div></div>
+<div id="toast"></div>
+<script>
+var KEY='tf07premium_v2',H=3600000,D=24*H;
+var PTS=[12,9,8,7,6,5,4,3,2,1];
+function seed(){var n=Date.now();return{v:'home',f:'all',admin:false,me:{name:'',uid:''},
+tours:[
+{id:1,name:'Booyah Bash Solo',mode:'Solo',map:'Bermuda',fee:20,prize:2000,max:48,filled:31,at:n+3*H,st:'open',room:'7741920',pass:'BB07'},
+{id:2,name:'Squad Surge Cup',mode:'Squad',map:'Purgatory',fee:100,prize:10000,max:12,filled:9,at:n+1*D,st:'open',room:'8820145',pass:'SQ99'},
+{id:3,name:'Duo Rush Night',mode:'Duo',map:'Kalahari',fee:50,prize:4000,max:24,filled:24,at:n-10*60000,st:'live',room:'6609312',pass:'DR50'},
+{id:4,name:'Free Entry Friday',mode:'Squad',map:'Bermuda',fee:0,prize:1000,max:12,filled:12,at:n-2*D,st:'done',room:'-',pass:'-'}],
+regs:[],scores:[]}}
+var S;try{S=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){S=seed()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function $(i){return document.getElementById(i)}
+function toast(m){var t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){t.style.display='none'},2200)}
+function money(n){return n?'₹'+n.toLocaleString('en-IN'):'FREE'}
+function fmt(t){return new Date(t).toLocaleString([], {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+function isReg(id){return S.regs.some(function(r){return r.tid===id})}
+function go(v){S.v=v;save();render();window.scrollTo(0,0)}
+function board(tid){var m={};S.scores.forEach(function(s){if(tid!=='all'&&s.tid!=tid)return;var k=s.team;m[k]=m[k]||{team:k,k:0,p:0,w:0,m:0};m[k].k+=s.kills;m[k].p+=s.pts;m[k].m++;if(s.place===1)m[k].w++});
+return Object.keys(m).map(function(k){return m[k]}).sort(function(a,b){return b.p-a.p||b.k-a.k})}
+function card(t){var left=t.max-t.filled,reg=isReg(t.id),btn;
+if(t.st==='done')btn='<button class="btn alt sm" onclick="S.f='+t.id+';go(\'ranks\')">Results</button>';
+else if(reg)btn='<button class="btn alt sm" onclick="room('+t.id+')">View room</button>';
+else if(left<=0)btn='<button class="btn sm" disabled>Full</button>';
+else btn='<button class="btn sm" onclick="regSheet('+t.id+')">Join · '+(t.fee?'₹'+t.fee:'Free')+'</button>';
+return '<div class="card"><div class="row"><h3>'+esc(t.name)+'</h3><span class="b '+t.st+'">'+(t.st==='live'?'● LIVE':t.st==='open'?'OPEN':'ENDED')+'</span></div>'+
+'<div class="badges"><span class="b">'+t.mode+'</span><span class="b">'+t.map+'</span><span class="b">'+fmt(t.at)+'</span></div>'+
+'<div class="row"><div><div class="mut">PRIZE POOL</div><div class="prize">'+money(t.prize)+'</div></div>'+btn+'</div>'+
+'<div class="bar"><i style="width:'+Math.min(100,t.filled/t.max*100)+'%"></i></div><div class="mut">'+t.filled+'/'+t.max+' slots · '+(left>0?left+' left':'full')+'</div></div>'}
+function vHome(){var nx=S.tours.filter(function(t){return t.st==='open'}).sort(function(a,b){return a.at-b.at})[0];
+return '<div class="top"><div class="logo">TF07 <b>ARENA</b></div><button class="avm" onclick="go(\'me\')"><span class="pill">'+(ON?(S.off?'● OFFLINE':'● ONLINE'):'DEMO')+'</span><span class="av">'+avH()+'</span></button></div>'+
+'<div class="hero"><small>NEXT MATCH</small><h2>'+(nx?esc(nx.name):'No match scheduled')+'</h2><div>'+(nx?nx.mode+' · '+nx.map+' · '+money(nx.prize)+' prize':'Check back soon')+'</div>'+
+'<div class="cd" id="cd"><div><b>--</b>HRS</div><div><b>--</b>MIN</div><div><b>--</b>SEC</div></div>'+
+(nx?'<button class="btn" onclick="'+(isReg(nx.id)?'room('+nx.id+')':'regSheet('+nx.id+')')+'">'+(isReg(nx.id)?'View room details':'Register now')+'</button>':'')+'</div>'+
+'<div class="stats"><div class="stat"><b>'+S.tours.length+'</b><span>Tournaments</span></div><div class="stat"><b>'+S.tours.reduce(function(a,t){return a+t.filled},0)+'</b><span>Players</span></div><div class="stat"><b>'+money(S.tours.reduce(function(a,t){return a+t.prize},0))+'</b><span>Prizes</span></div></div>'+
+'<div class="sec"><h3>Live &amp; upcoming</h3><span class="mut" onclick="go(\'play\')">See all →</span></div>'+
+S.tours.filter(function(t){return t.st!=='done'}).slice(0,2).map(card).join('')}
+function vPlay(){var f=S.f==='open'||S.f==='live'||S.f==='done'?S.f:'all',list=S.tours.filter(function(t){return f==='all'||t.st===f});
+var tb=[['all','All'],['open','Open'],['live','Live'],['done','Ended']].map(function(x){return '<button class="'+(f===x[0]?'on':'')+'" onclick="S.f=\''+x[0]+'\';render()">'+x[1]+'</button>'}).join('');
+var mine=S.regs.map(function(r){var t=S.tours.find(function(x){return x.id===r.tid});return t?'<div class="card"><div class="row"><div><b>'+esc(r.team)+'</b><div class="mut">'+esc(t.name)+' · UID '+esc(r.uid)+'</div></div><button class="btn alt sm" onclick="room('+t.id+')">Room</button></div></div>':''}).join('');
+return '<div class="top"><div class="logo">TOURNAMENTS</div></div><div class="tabs">'+tb+'</div>'+(S.admin?'<button class="btn" style="margin-bottom:12px" onclick="go(\'me\')">+ Add tournament</button>':'')+(list.map(card).join('')||'<div class="card mut">Nothing here yet.</div>')+
+'<div class="sec"><h3>My registrations</h3></div>'+(mine||'<div class="card mut">You haven\'t joined any tournament yet.</div>')}
+function vRanks(){var f=S.f==='all'||S.tours.some(function(t){return t.id==S.f})?S.f:'all',b=board(f);
+var opts='<option value="all">All tournaments</option>'+S.tours.map(function(t){return '<option value="'+t.id+'"'+(t.id==f?' selected':'')+'>'+esc(t.name)+'</option>'}).join('');
+return '<div class="top"><div class="logo">LEADERBOARD</div></div><select onchange="S.f=this.value;render()">'+opts+'</select>'+
+(b.length?'<div class="card"><table class="tbl"><tr><th>#</th><th>TEAM</th><th>KILLS</th><th>WINS</th><th>PTS</th></tr>'+b.map(function(r,i){return '<tr><td class="rk r'+(i+1)+'">'+(i+1)+'</td><td>'+esc(r.team)+'</td><td>'+r.k+'</td><td>'+r.w+'</td><td><b>'+r.p+'</b></td></tr>'}).join('')+'</table></div>':'<div class="card mut">No results yet. Scores appear after the admin posts match results.</div>')+
+'<div class="card mut">Points: 1st 12 · 2nd 9 · 3rd 8 · 4th 7 · 5th 6 · 6th 5 · 7th 4 · 8th 3 · 9th 2 · 10th 1, plus 1 per kill.</div>'}
+function vMe(){var a=S.admin;
+var h='<div class="top"><div class="logo">MY PROFILE</div></div><div class="card"><label>In-game name</label><input id="pn" value="'+esc(S.me.name)+'" maxlength="24"><label>Free Fire UID</label><input id="pu" inputmode="numeric" value="'+esc(S.me.uid)+'" maxlength="12"><button class="btn" onclick="saveMe()">Save profile</button></div>';
+if(!a)return h+'<div class="card"><h3>Admin panel</h3><p class="mut">Enter admin PIN to manage tournaments and results. Demo PIN: 0707</p><input id="pin" type="password" inputmode="numeric" placeholder="PIN"><button class="btn alt" onclick="unlock()">Unlock</button></div>';
+return h+'<div class="sec"><h3>Admin · Create tournament</h3><button class="btn alt sm" onclick="S.admin=false;save();render()">Lock</button></div><div class="card"><label>Name</label><input id="an"><label>Mode</label><select id="am"><option>Solo</option><option>Duo</option><option>Squad</option></select><label>Map</label><select id="ap"><option>Bermuda</option><option>Purgatory</option><option>Kalahari</option><option>Alpine</option></select>'+
+'<label>Start (hours from now)</label><input id="ah" type="number" value="24"><label>Entry fee ₹</label><input id="af" type="number" value="0"><label>Prize pool ₹</label><input id="ar" type="number" value="1000"><label>Max slots</label><input id="ax" type="number" value="12"><label>Room ID</label><input id="ai"><label>Room password</label><input id="aw"><button class="btn" onclick="addTour()">Create</button></div>'+
+'<div class="sec"><h3>Admin · Manage</h3></div>'+S.tours.map(function(t){return '<div class="card"><b>'+esc(t.name)+'</b><div class="mut">'+t.st.toUpperCase()+' · '+t.filled+'/'+t.max+'</div><div class="row" style="margin-top:8px"><button class="btn alt sm" onclick="setSt('+t.id+',\'open\')">Open</button><button class="btn alt sm" onclick="setSt('+t.id+',\'live\')">Live</button><button class="btn alt sm" onclick="setSt('+t.id+',\'done\')">End</button><button class="btn alt sm" onclick="delT('+t.id+')">Delete</button></div></div>'}).join('')+
+'<div class="sec"><h3>Admin · Post result</h3></div><div class="card"><label>Tournament</label><select id="st">'+S.tours.map(function(t){return '<option value="'+t.id+'">'+esc(t.name)+'</option>'}).join('')+'</select><label>Team / player name</label><input id="sn"><label>Kills</label><input id="sk" type="number" value="0"><label>Placement (1–12)</label><input id="sp" type="number" value="1"><button class="btn" onclick="addScore()">Add result</button></div>'+
+'<div class="sec"><h3>Admin · Registrations ('+S.regs.length+')</h3></div>'+(S.regs.map(function(r){return '<div class="card"><b>'+esc(r.team)+'</b><div class="mut">UID '+esc(r.uid)+' · '+esc(r.contact)+'</div></div>'}).join('')||'<div class="card mut">None yet.</div>')+
+'<div class="card mut">Demo only: data stays on this device and the PIN is not secure. Don\'t use real passwords or personal data.</div>'}
+function render(){var v=S.v;$('app').innerHTML=v==='home'?vHome():v==='play'?vPlay():v==='ranks'?vRanks():vMe();
+$('nav').innerHTML=[['home','🏠','Home'],['play','🎮','Play'],['ranks','🏆','Ranks'],['me','👤','Me']].map(function(x){return '<button class="'+(v===x[0]?'on':'')+'" onclick="go(\''+x[0]+'\')"><span>'+x[1]+'</span>'+x[2]+'</button>'}).join('');tick()}
+function tick(){var c=$('cd');if(!c)return;var nx=S.tours.filter(function(t){return t.st==='open'}).sort(function(a,b){return a.at-b.at})[0];if(!nx)return;var d=Math.max(0,nx.at-Date.now()),h=Math.floor(d/H),m=Math.floor(d%H/60000),s=Math.floor(d%60000/1000);
+c.innerHTML='<div><b>'+h+'</b>HRS</div><div><b>'+m+'</b>MIN</div><div><b>'+s+'</b>SEC</div>'}
+setInterval(tick,1000);
+function sheet(h){$('sheetBody').innerHTML=h;$('sheet').classList.add('show')}
+function closeSheet(){$('sheet').classList.remove('show')}
+$('sheet').addEventListener('click',function(e){if(e.target===this)closeSheet()});
+function regSheet(id){var t=S.tours.find(function(x){return x.id===id});
+sheet('<h3>Register · '+esc(t.name)+'</h3><p class="mut">'+t.mode+' · '+t.map+' · Entry '+(t.fee?'₹'+t.fee:'Free')+'</p><label>Team / player name</label><input id="rt" maxlength="24" value="'+esc(S.me.name)+'"><label>Captain Free Fire UID</label><input id="ru" inputmode="numeric" maxlength="12" value="'+esc(S.me.uid)+'"><label>WhatsApp number</label><input id="rc" inputmode="tel" maxlength="15"><button class="btn" onclick="doReg('+id+')">Confirm registration</button><p class="mut">Pay the entry fee to the organiser on WhatsApp after registering.</p>')}
+function doReg(id){var t=S.tours.find(function(x){return x.id===id}),n=$('rt').value.trim(),u=$('ru').value.trim(),c=$('rc').value.trim();
+if(n.length<2)return toast('Enter a team name');if(!/^\d{8,12}$/.test(u))return toast('UID must be 8–12 digits');if(!/^\+?\d{10,15}$/.test(c))return toast('Enter a valid WhatsApp number');
+if(S.regs.some(function(r){return r.tid===id&&r.uid===u}))return toast('This UID is already registered');if(t.filled>=t.max)return toast('Tournament is full');
+S.regs.push({tid:id,team:n,uid:u,contact:c});t.filled++;save();closeSheet();render();toast('Registered! 🎉')}
+function room(id){var t=S.tours.find(function(x){return x.id===id}),ok=isReg(id)&&t.st==='live';
+sheet('<h3>'+esc(t.name)+'</h3><p class="mut">'+fmt(t.at)+' · '+t.mode+' · '+t.map+'</p>'+(ok?'<div class="room">Room ID: <b>'+esc(t.room)+'</b><br>Password: <b>'+esc(t.pass)+'</b></div><p class="mut">Open Free Fire → Custom Room → enter these details.</p>':'<div class="room">🔒 Room details unlock for registered players when the match goes live.</div>')+'<button class="btn alt" style="margin-top:12px" onclick="closeSheet()">Close</button>')}
+function saveMe(){S.me={name:$('pn').value.trim(),uid:$('pu').value.trim()};save();toast('Profile saved')}
+function unlock(){if($('pin').value==='0707'){S.admin=true;save();render()}else toast('Wrong PIN')}
+function addTour(){var n=$('an').value.trim();if(!n)return toast('Enter a name');var mx=parseInt($('ax').value)||12;
+S.tours.unshift({id:Date.now(),name:n,mode:$('am').value,map:$('ap').value,fee:parseInt($('af').value)||0,prize:parseInt($('ar').value)||0,max:mx,filled:0,at:Date.now()+(parseFloat($('ah').value)||0)*H,st:'open',room:$('ai').value.trim()||'-',pass:$('aw').value.trim()||'-'});save();render();toast('Tournament created')}
+function setSt(id,s){S.tours.find(function(t){return t.id===id}).st=s;save();render()}
+function delT(id){if(!confirm('Delete this tournament?'))return;S.tours=S.tours.filter(function(t){return t.id!==id});S.regs=S.regs.filter(function(r){return r.tid!==id});S.scores=S.scores.filter(function(s){return s.tid!==id});save();render()}
+function addScore(){var n=$('sn').value.trim(),k=parseInt($('sk').value)||0,p=parseInt($('sp').value)||0;if(!n||p<1)return toast('Fill team and placement');
+S.scores.push({tid:parseInt($('st').value),team:n,kills:k,place:p,pts:(PTS[p-1]||0)+k});save();toast('Result added')}
+/* ===== ONLINE CONFIG: fill after Firebase setup (see README_ONLINE_SETUP.md) ===== */
+var CFG={apiKey:'AIzaSyCGJADb0RSB69DX5S_UeedXnTpBEdSuHVs',projectId:'tf07-arena',adminEmail:'ske7686hhh@gmail.com'};
+var ON=!!(CFG.apiKey&&CFG.projectId),BASE='https://firestore.googleapis.com/v1/projects/'+CFG.projectId+'/databases/(default)/documents/';
+var AV=['🦅','🐺','🐍','🦁','🐉','💀','🔥','👑'],TIERS=['Bronze','Silver','Gold','Platinum','Diamond','Heroic','Grandmaster'],ROLES=['Rusher','Sniper','Support','Leader'],MODES=['Solo','Duo','Squad'];
+var MAPS={Bermuda:['#0f766e','#052e2b','#fbbf24'],Purgatory:['#9d174d','#2a0a1f','#fb7185'],Kalahari:['#c2410c','#2b1205','#fde68a'],Alpine:['#1d4ed8','#07122e','#bae6fd']};
+S.me=S.me||{};S.regs=S.regs||[];S.teams=S.teams||[];S.areg=[];
+if(ON){S.tours=[];S.scores=[];S.teams=[];S.admin=!!S.tok}
+function save(){try{var c={};for(var k in S){if(k==='areg'||(ON&&(k==='tours'||k==='scores'||k==='teams')))continue;c[k]=S[k]}localStorage.setItem(KEY,JSON.stringify(c))}catch(e){}}
+
+/* ---- Firestore REST helpers ---- */
+function tf(v){return typeof v==='number'?(Number.isInteger(v)?{integerValue:String(v)}:{doubleValue:v}):typeof v==='boolean'?{booleanValue:v}:{stringValue:String(v==null?'':v)}}
+function enc(o){var f={};for(var k in o)f[k]=tf(o[k]);return{fields:f}}
+function dec(d){var id=d.name.split('/').pop(),o={id:/^\d{1,13}$/.test(id)?+id:id},f=d.fields||{};for(var k in f){var x=f[k];if(k==='id')continue;o[k]=x.integerValue!==undefined?+x.integerValue:x.doubleValue!==undefined?x.doubleValue:x.booleanValue!==undefined?x.booleanValue:x.stringValue}return o}
+function refresh(){return fetch('https://securetoken.googleapis.com/v1/token?key='+CFG.apiKey,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(S.rt)}).then(function(r){return r.json()}).then(function(j){if(!j.id_token)throw 0;S.tok=j.id_token;S.rt=j.refresh_token;save()}).catch(function(){S.tok=null;S.rt=null;S.admin=false;save();render();throw new Error('auth')})}
+function api(m,p,b,re){var h={'Content-Type':'application/json'};if(S.tok)h.Authorization='Bearer '+S.tok;
+return fetch(BASE+p,{method:m,headers:h,body:b?JSON.stringify(b):undefined}).then(function(r){if(r.status===401&&S.rt&&!re)return refresh().then(function(){return api(m,p,b,1)});if(!r.ok){var e=new Error(r.status);e.code=r.status;throw e}return m==='DELETE'?{}:r.json()})}
+function list(c){return api('GET',c+'?pageSize=300').then(function(j){return(j.documents||[]).map(dec)})}
+var lastH='';
+function sync(){if(!ON)return;var p=[list('tournaments'),list('teams'),list('scores')];if(S.tok)p.push(list('regs'));
+return Promise.all(p).then(function(r){S.off=0;S.tours=r[0].sort(function(a,b){return b.at-a.at});S.teams=r[1];S.scores=r[2];S.areg=r[3]||[];S.tours.forEach(function(t){t.filled=S.teams.filter(function(x){return x.tid===t.id}).length});
+var h=JSON.stringify([S.tours,S.teams,S.scores,S.areg]),a=document.activeElement;if(h!==lastH&&!$('sheet').classList.contains('show')&&!(a&&/INPUT|SELECT/.test(a.tagName))){lastH=h;render()}}).catch(function(){S.off=1})}
+function wr(c,o){render();if(!ON){save();return}api('PATCH',c+'/'+o.id,enc(o)).then(function(){lastH='';return sync()}).catch(function(){toast('Save failed – login again')})}
+function rm(c,id){render();if(!ON){save();return}api('DELETE',c+'/'+id).then(function(){lastH='';sync()}).catch(function(){toast('Delete failed')})}
+
+/* ---- visuals ---- */
+function hasRoom(t){return t.room&&t.room!=='-'}
+function sel(id,a,v){return '<select id="'+id+'">'+a.map(function(x){return '<option'+(x===v?' selected':'')+'>'+x+'</option>'}).join('')+'</select>'}
+function avH(){return S.me.photo?'<img src="'+S.me.photo+'" alt="">':'<span>'+AV[S.me.av||0]+'</span>'}
+function banner(t){if(t.img)return '<div class="ban"><img src="'+esc(t.img)+'" alt=""></div>';
+var c=MAPS[t.map]||MAPS.Bermuda,n=t.mode==='Solo'?1:t.mode==='Duo'?2:4,s='',g='g'+String(t.id).replace(/\W/g,'');
+for(var i=0;i<n;i++){var x=200+(i-(n-1)/2)*46;s+='<g transform="translate('+x+',112)"><circle cy="-22" r="11" fill="#000" opacity=".75"/><path d="M-16 20v-26q0-9 16-9t16 9v26z" fill="#000" opacity=".75"/></g>'}
+return '<div class="ban"><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="'+g+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></linearGradient></defs><rect width="400" height="150" fill="url(#'+g+')"/><circle cx="330" cy="36" r="22" fill="'+c[2]+'" opacity=".9"/><path d="M0 125l60-45 50 30 70-55 80 60 60-35 80 50v40H0z" fill="#000" opacity=".35"/>'+s+'<g stroke="'+c[2]+'" stroke-width="2" fill="none" transform="translate(62,46)"><circle r="18"/><path d="M-28 0h16M12 0h16M0-28v16M0 12v16"/></g><path d="M300 20q30-26 60 0z" fill="#fff" opacity=".0"/><text x="14" y="142" fill="#fff" font-size="12" font-weight="900" letter-spacing="3" opacity=".9">'+t.mode.toUpperCase()+' · '+esc(t.map).toUpperCase()+'</text></svg></div>'}
+function card(t){var left=t.max-t.filled,reg=isReg(t.id),btn;
+if(t.st==='done')btn='<button class="btn alt sm" onclick="S.f='+t.id+';go(\'ranks\')">Results</button>';
+else if(reg)btn='<button class="btn alt sm" onclick="room('+t.id+')">View room</button>';
+else if(left<=0)btn='<button class="btn sm" disabled>Full</button>';
+else btn='<button class="btn sm" onclick="regSheet('+t.id+')">Join · '+(t.fee?'₹'+t.fee:'Free')+'</button>';
+return '<div class="card">'+banner(t)+'<div class="row"><h3>'+esc(t.name)+'</h3><span class="b '+t.st+'">'+(t.st==='live'?'● LIVE':t.st==='open'?'OPEN':'ENDED')+'</span></div>'+
+'<div class="badges"><span class="b">'+t.mode+'</span><span class="b">'+t.map+'</span><span class="b">'+fmt(t.at)+'</span></div>'+
+(hasRoom(t)&&t.st!=='done'?'<div class="room">🔑 Room ID <b>'+esc(t.room)+'</b> · Pass <b>'+esc(t.pass)+'</b></div>':'')+
+'<div class="row" style="margin-top:10px"><div><div class="mut">PRIZE POOL</div><div class="prize">'+money(t.prize)+'</div></div>'+btn+'</div>'+
+'<div class="bar"><i style="width:'+Math.min(100,t.filled/t.max*100)+'%"></i></div><div class="mut">'+t.filled+'/'+t.max+' slots · '+(left>0?left+' left':'full')+'</div></div>'}
+function cp(x){try{navigator.clipboard.writeText(x);toast('Copied')}catch(e){toast('Copy not supported')}}
+function room(id){var t=S.tours.find(function(x){return x.id===id});if(!t)return;var ri=String(t.room).replace(/[^\w-]/g,''),pw=String(t.pass).replace(/[^\w-]/g,'');
+sheet('<h3>'+esc(t.name)+'</h3><p class="mut">'+fmt(t.at)+' · '+t.mode+' · '+t.map+'</p>'+(hasRoom(t)?'<div class="room">Room ID: <b>'+esc(t.room)+'</b><br>Password: <b>'+esc(t.pass)+'</b></div><div class="row" style="margin-top:10px"><button class="btn sm" onclick="cp(\''+ri+'\')">Copy ID</button><button class="btn sm" onclick="cp(\''+pw+'\')">Copy password</button></div><p class="mut">Free Fire → Custom Room → enter these details.</p>':'<div class="room">Room details are not published yet. The organiser will add them before the match.</div>')+'<button class="btn alt" style="margin-top:12px" onclick="closeSheet()">Close</button>')}
+
+/* ---- registration ---- */
+function doReg(id){var t=S.tours.find(function(x){return x.id===id}),n=$('rt').value.trim(),u=$('ru').value.trim(),c=$('rc').value.trim();
+if(n.length<2)return toast('Enter a team name');if(!/^\d{8,12}$/.test(u))return toast('UID must be 8–12 digits');if(!/^\+?\d{10,15}$/.test(c))return toast('Enter a valid WhatsApp number');
+if(S.regs.some(function(r){return r.tid===id&&r.uid===u}))return toast('This UID is already registered');if(t.filled>=t.max)return toast('Tournament is full');
+var rec={tid:id,team:n,uid:u,contact:c};
+function done(){S.regs.push(rec);t.filled++;save();closeSheet();render();toast('Registered! 🎉')}
+if(!ON)return done();
+var key=id+'_'+u;
+api('POST','regs?documentId='+key,enc({tid:id,team:n,uid:u,contact:c,at:Date.now()})).then(function(){return api('POST','teams?documentId='+key,enc({tid:id,team:n}))}).then(function(){done();lastH='';sync()}).catch(function(e){toast(e.code===409?'This UID is already registered':'No internet – try again')})}
+
+/* ---- profile ---- */
+function grab(){if(!$('pn'))return;S.me.name=$('pn').value.trim();S.me.uid=$('pu').value.trim();S.me.mode=$('pm').value;S.me.tier=$('pt').value;S.me.role=$('pr').value}
+function setAv(i){grab();S.me.av=i;S.me.photo='';save();render()}
+function saveMe(){grab();save();render();toast('Profile saved')}
+function pickPhoto(i){var f=i.files[0];if(!f)return;grab();var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement('canvas'),z=160,s=Math.min(im.width,im.height);c.width=c.height=z;c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,z,z);S.me.photo=c.toDataURL('image/jpeg',.8);save();render()};im.src=r.result};r.readAsDataURL(f)}
+var tp=0;function tap5(){if(++tp>=5){tp=0;S.al=1;save();render();toast('Admin login unlocked')}}
+function vMe(){var m=S.me,h='<div class="top"><div class="logo" onclick="tap5()">MY PROFILE</div></div><div class="pf"><div class="av big">'+avH()+'</div><div><h3>'+esc(m.name||'Player')+'</h3><div class="mut">UID '+esc(m.uid||'–')+'</div><span class="b" style="background:#ffb30022;color:var(--ac2)">'+esc(m.tier||'Bronze')+'</span></div></div>'+
+'<div class="stats"><div class="stat"><b>'+S.regs.length+'</b><span>Joined</span></div><div class="stat"><b>'+esc(m.mode||'Squad')+'</b><span>Mode</span></div><div class="stat"><b>'+esc(m.role||'Rusher')+'</b><span>Role</span></div></div>'+
+'<div class="card"><label>Choose avatar</label><div class="avg">'+AV.map(function(a,i){return '<button class="av'+((m.av||0)===i&&!m.photo?' on':'')+'" onclick="setAv('+i+')">'+a+'</button>'}).join('')+'</div><label>Or upload your photo</label><input type="file" accept="image/*" onchange="pickPhoto(this)"><label>In-game name</label><input id="pn" maxlength="24" value="'+esc(m.name||'')+'"><label>Free Fire UID</label><input id="pu" inputmode="numeric" maxlength="12" value="'+esc(m.uid||'')+'"><label>Preferred mode</label>'+sel('pm',MODES,m.mode||'Squad')+'<label>Rank tier</label>'+sel('pt',TIERS,m.tier||'Bronze')+'<label>Role</label>'+sel('pr',ROLES,m.role||'Rusher')+'<button class="btn" onclick="saveMe()">Save profile</button></div>'+
+'<div class="card mut">'+(ON?(S.off?'⚠ Offline – showing last loaded data':'● Online – live data from server'):'Demo mode – online server not connected yet')+'</div>';
+if(S.admin)return h+adminUI();
+return h+(ON?'<div class="card"><h3>Admin login</h3><label>Email</label><input id="ae" type="email" autocomplete="username"><label>Password</label><input id="apw" type="password" autocomplete="current-password"><button class="btn" onclick="alogin()">Login</button></div>':'<div class="card"><h3>Admin (demo mode)</h3><p class="mut">Online not connected. Demo PIN: 0707</p><input id="pin" type="password" inputmode="numeric" placeholder="PIN"><button class="btn alt" onclick="unlock()">Unlock</button></div>')}
+
+/* ---- admin ---- */
+function alogin(){var e=$('ae').value.trim().toLowerCase(),p=$('apw').value;
+fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+CFG.apiKey,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p,returnSecureToken:true})}).then(function(r){return r.json()}).then(function(j){if(!j.idToken||(CFG.adminEmail&&e!==CFG.adminEmail.toLowerCase()))throw 0;S.tok=j.idToken;S.rt=j.refreshToken;S.admin=true;save();lastH='';sync();render();toast('Welcome, admin')}).catch(function(){toast('Login failed')})}
+function alogout(){S.admin=false;S.tok=null;S.rt=null;S.al=0;S.areg=[];save();render()}
+function adminUI(){var regs=ON?S.areg:S.regs;
+return '<div class="sec"><h3>Admin · Create tournament</h3><button class="btn alt sm" onclick="alogout()">Logout</button></div><div class="card"><label>Name</label><input id="an"><label>Mode</label>'+sel('am',MODES,'Squad')+'<label>Map</label>'+sel('ap',Object.keys(MAPS),'Bermuda')+'<label>Start (hours from now)</label><input id="ah" type="number" value="24"><label>Entry fee ₹</label><input id="af" type="number" value="0"><label>Prize pool ₹</label><input id="ar" type="number" value="1000"><label>Max slots</label><input id="ax" type="number" value="12"><label>Banner image URL (optional)</label><input id="ab" placeholder="https://..."><button class="btn" onclick="addTour()">Create</button></div>'+
+'<div class="sec"><h3>Admin · Manage &amp; room</h3></div>'+(S.tours.map(function(t){return '<div class="card"><b>'+esc(t.name)+'</b><div class="mut">'+t.st.toUpperCase()+' · '+t.filled+'/'+t.max+' slots</div><label>Room ID</label><input id="ri'+t.id+'" value="'+esc(hasRoom(t)?t.room:'')+'"><label>Password</label><input id="rp'+t.id+'" value="'+esc(hasRoom(t)?t.pass:'')+'"><button class="btn sm" onclick="pubRoom('+t.id+')">Publish room to everyone</button><div class="row" style="margin-top:12px"><button class="btn alt sm" onclick="setSt('+t.id+',\'open\')">Open</button><button class="btn alt sm" onclick="setSt('+t.id+',\'live\')">Live</button><button class="btn alt sm" onclick="setSt('+t.id+',\'done\')">End</button><button class="btn alt sm" onclick="delT('+t.id+')">Delete</button></div></div>'}).join('')||'<div class="card mut">No tournaments yet.</div>')+
+'<div class="sec"><h3>Admin · Post result</h3></div><div class="card"><label>Tournament</label><select id="st">'+S.tours.map(function(t){return '<option value="'+t.id+'">'+esc(t.name)+'</option>'}).join('')+'</select><label>Team / player name</label><input id="sn"><label>Kills</label><input id="sk" type="number" value="0"><label>Placement (1–12)</label><input id="sp" type="number" value="1"><button class="btn" onclick="addScore()">Add result</button></div>'+
+'<div class="sec"><h3>Admin · Registrations ('+regs.length+')</h3></div>'+(regs.map(function(r){return '<div class="card"><b>'+esc(r.team)+'</b><div class="mut">UID '+esc(r.uid)+' · '+esc(r.contact)+'</div></div>'}).join('')||'<div class="card mut">None yet.</div>')}
+function addTour(){var n=$('an').value.trim();if(!n)return toast('Enter a name');
+var t={id:Date.now(),name:n,mode:$('am').value,map:$('ap').value,fee:parseInt($('af').value)||0,prize:parseInt($('ar').value)||0,max:parseInt($('ax').value)||12,at:Math.round(Date.now()+(parseFloat($('ah').value)||0)*H),st:'open',room:'-',pass:'-',img:$('ab').value.trim(),filled:0};
+S.tours.unshift(t);wr('tournaments',t);toast('Tournament created')}
+function pubRoom(id){var t=S.tours.find(function(x){return x.id===id});t.room=$('ri'+id).value.trim()||'-';t.pass=$('rp'+id).value.trim()||'-';wr('tournaments',t);toast(hasRoom(t)?'Room published for everyone ✅':'Room cleared')}
+function setSt(id,s){var t=S.tours.find(function(x){return x.id===id});t.st=s;wr('tournaments',t)}
+function delT(id){if(!confirm('Delete this tournament?'))return;S.scores.filter(function(s){return s.tid===id&&s.id}).forEach(function(s){rm('scores',s.id)});S.tours=S.tours.filter(function(t){return t.id!==id});S.scores=S.scores.filter(function(s){return s.tid!==id});if(!ON)S.regs=S.regs.filter(function(r){return r.tid!==id});rm('tournaments',id)}
+function addScore(){var n=$('sn').value.trim(),k=parseInt($('sk').value)||0,p=parseInt($('sp').value)||0;if(!n||p<1)return toast('Fill team and placement');
+var o={id:Date.now(),tid:parseInt($('st').value),team:n,kills:k,place:p,pts:(PTS[p-1]||0)+k};S.scores.push(o);wr('scores',o);toast('Result added')}
+if(ON){sync();setInterval(sync,15000)}
+
+render();
+(function(){var s=$('splash'),h='';for(var i=0;i<16;i++)h+='<i style="left:'+Math.random()*100+'%;animation-delay:'+Math.random()*4+'s;animation-duration:'+(3+Math.random()*4)+'s"></i>';$('emb').innerHTML=h;
+setTimeout(function(){s.classList.add('ready')},2300);
+window.enter=function(){if(!s.classList.contains('ready'))return;s.classList.add('out');setTimeout(function(){s.style.display='none'},700)}})();
+</script>
+</body>
+</html>
