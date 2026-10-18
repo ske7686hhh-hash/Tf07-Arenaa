@@ -1,0 +1,60 @@
+
+name: Build TF07 Arena APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Arrange Android project files
+        shell: bash
+        run: |
+          set -e
+
+          if [ ! -f app/build.gradle ]; then
+            mkdir -p app/src/main/java/com/tf07arena/app
+            mkdir -p app/src/main/assets
+
+            cp "build (1).gradle" app/build.gradle
+            cp AndroidManifest.xml app/src/main/AndroidManifest.xml
+            cp MainActivity.java app/src/main/java/com/tf07arena/app/MainActivity.java
+            cp "index (1).html" app/src/main/assets/index.html
+          fi
+
+          test -f settings.gradle
+          test -f build.gradle
+          test -f app/build.gradle
+          test -f app/src/main/AndroidManifest.xml
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build debug APK
+        run: gradle assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TF07-Arena-debug-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          
